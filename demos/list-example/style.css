@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #073144;
+  font-family: "Open Sans", sans-serif;
+  line-height: 2;
+  font-size: 1.125rem;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0 0 1.5em 0;
+}
+
+.container {
+  display: grid;
+  margin: 4rem auto;
+  max-width: 1100px;
+  grid-template-columns: 200px 1fr;
+  grid-column-gap: 4rem;
+}
+
+nav {
+  background-color: white;
+  position: sticky;
+  top: 4rem;
+}
+
+.case-study-elements {
+  counter-reset: li;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.case-study-elements a {
+  align-items: center;
+  border: none;
+  color: #22ace0;
+  display: inline-flex;
+  font-size: .875rem;
+  margin-bottom: 5px;
+  padding: .3125rem .9375rem .3125rem 2.625rem;
+  position: relative;
+  text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: none;
+  width: 100%;
+}
+
+.case-study-elements li a::before {
+  border-radius: 100%;
+  border: 2px solid #b9c3ce;
+  color: #b9c3ce;
+  content: counter(li);
+  counter-increment: li;
+  font-weight: normal;
+  height: 20px;
+  left: 7px;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  top: 6px;
+  width: 20px;
+}
+
+.case-study-elements a:hover {
+  color: #df1360
+}
+
+.case-study-elements a:hover::before {
+  color: #df1360;
+  border-color: #df1360;
+}
+
+.case-study-elements li a.active {
+
+  color: #df1360
+}
+
+.case-study-elements a.active::before {
+  background-color: #df1360;
+  border: 2px solid #df1360;
+  color: white;
+}
+
+.content-section {
+  margin-bottom: 6rem;
+  scroll-snap-align: start;
+}
+
+.content {
+  counter-reset: h1counter;
+}
+
+.content-sub-head {
+  align-items: center;
+  display: flex;
+  font-size: 2.25rem;
+  font-weight: lighter;
+  margin-top: 0;
+}
+
+.content-sub-head::before {
+  background-color: #da2061;
+  border-radius: 100%;
+  color: #fff;
+  content: counter(h1counter);
+  counter-increment: h1counter;
+  display: block;
+  display: block;
+  font-size: 1.375rem;
+  font-size: 22px;
+  font-weight: 400;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 1rem;
+  text-align: center;
+  width: 50px;
+}

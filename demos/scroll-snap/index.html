@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    
+
+main {
+  height: 100vh;
+  overflow: auto;  
+  scroll-snap-type: block mandatory;
+  scroll-padding: 4.25em;
+}
+
+header { 
+  position: sticky;
+  top: 0;
+}
+
+article {
+  scroll-snap-align: start;
+  min-height: 50vh;
+  scroll-margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* section {
+  overflow: auto;
+  grid: auto-flow / repeat(3, 80vw);
+  scroll-snap-type: both mandatory;
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Layout */
+
+* { box-sizing: border-box; }
+
+html, body {
+  overflow: hidden;
+}
+
+html,
+header {
+  background: lightgray;
+}
+
+main {
+  display: grid;
+  grid-template: auto minmax(0, 1fr) / 100%;
+  width: 100vw;
+}
+
+@media not (prefers-reduced-motion:reduce) {
+  main { scroll-behavior: smooth; }
+}
+
+section {
+  display: grid;
+  grid-auto-rows: minmax(min-content, 1fr);
+  grid-gap: 1em;
+  padding: 1em;
+}
+
+header {
+  scroll-snap-align: start;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: 1 / 1 / span 1 / -1;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+}
+
+article {
+  background: white;
+  border: 2px solid gray;
+  display: grid;
+  grid-template-columns: minmax(min-content, 35em);
+  align-content: center;
+  justify-content: center;
+  padding: 1em 2em;
+}
+
+h1, h2 {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+ul {
+  margin: 0.5em 0;
+  padding: 0.25em 0;
+}
+
+ul ul {
+  padding-left: 1em;
+}
+
+li {
+  padding: 0.25em 0;
+}
+
+.bug {
+  background: pink;
+}
+
+code {
+  display: inline-block;
+  background: #eee;
+  padding: 0.125em 0.25em;
+}
+
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Demo of Scroll-Snapping</h1>
+      <nav>
+        <a href="#type">type</a>
+        <a href="#align">align</a>
+        <a href="#padding">padding</a>
+        <a href="#margin">margin</a>
+        <a href="#stop">stop</a>
+      </nav>
+    </header>
+    <section>
+    <article id="type">
+      <h2>Scroll Snap Type</h2>
+      <p>Apply to the <strong>scrolling container</strong></p>
+      <ul>
+        <li>
+          creates a scroll-snapping <strong>context</strong>
+        </li>
+        <li>
+          required <strong>axis</strong>: [ 
+          <code>x</code> | 
+          <code>y</code> | 
+          <code class="logical">block</code> | 
+          <code class="logical">inline</code> | 
+          <code>both</code> 
+          ]
+        </li>
+        <li>
+          optional <strong>strictness</strong>:
+          [ 
+          <code>*proximity</code> | 
+          <code>mandatory</code> 
+          ]
+        </li>
+        <li>
+          Use on <code>html</code> for viewport scrolling
+          <ul class="bug">
+            <li>
+              Chromium requires <code>overflow: auto</code> 
+              to work properly on <code>html</code> element:
+              <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=952711">https://bugs.chromium.org/p/chromium/issues/detail?id=952711</a>
+            </li>
+            <li>
+              Safari requires properties to be on <code>body</code> instead,
+              which breaks properly-implemented browsers:
+              <a href="https://bugs.webkit.org/show_bug.cgi?id=200643">https://bugs.webkit.org/show_bug.cgi?id=200643</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+    <article id="align">
+      <h2>Scroll Snap Align</h2>
+      <p>Apply to any <strong>scrolled elements</strong></p>
+      <ul>
+        <li>
+          creates a scroll-snapping <strong>target</strong>
+        </li>
+        <li>
+          keywords: [ 
+          <code>none</code> | 
+          <code>start</code> | 
+          <code>end</code> | 
+          <code>center</code> 
+          ]{1,2}
+          <ul>
+            <li>
+              first is block, second is inline…
+            </li>
+            <li class="bug">
+              Safari has them backwards:
+              <a href="https://bugs.webkit.org/show_bug.cgi?id=191865">https://bugs.webkit.org/show_bug.cgi?id=191865</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+    <article id="padding">
+      <h2>Scroll Padding</h2>
+      <p>Apply to the <strong>scrolling container</strong></p>
+      <ul>
+        <li>
+          narrows the available <strong>scroll-window</strong>
+        </li>
+        <li>
+          same syntax as <code>padding</code>
+        </li>
+        <li>
+          works for all scroll-to actions, not just snapping
+        </li>
+      </ul>
+    </article>
+    <article id="margin">
+      <h2>Scroll Margin</h2>
+      <p>Apply to any <strong>scrolled elements</strong></p>
+      <ul>
+        <li>
+          <strong>offset target</strong> from available scroll-window
+        </li>
+        <li>
+          same syntax as <code>margin</code>
+        </li>
+        <li>
+          works for all scroll-to actions, not just snapping
+        </li>
+      </ul>
+    </article>
+    <article id="stop">
+      <h2>Scroll Snap Stop</h2>
+      <p>Apply to any <strong>scrolled elements</strong></p>
+      <ul>
+        <li>
+          optionally <strong>stop inertial</strong> scrolling
+        </li>
+        <li>
+          keywords: [ 
+          <code class="stop">normal</code> | 
+          <code class="stop">always</code> 
+          ]
+        </li>
+        <li>
+          works for all scroll-to actions, not just snapping
+        </li>
+        <li class="bug">
+          Firefox support: 
+          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1312165">https://bugzilla.mozilla.org/show_bug.cgi?id=1312165</a>
+        </li>
+        <li class="bug">
+          Safari support: 
+          <a href="https://bugs.webkit.org/show_bug.cgi?id=197744">https://bugs.webkit.org/show_bug.cgi?id=197744</a>
+        </li>
+      </ul>
+    </article>  
+    <article>
+      <h2>page 6</h2>  
+    </article>
+    <article>
+      <h2>page 7</h2>  
+    </article>
+    <article>
+      <h2>page 8</h2>  
+    </article>
+    <article>
+      <h2>page 9</h2>  
+    </article>
+    <article>
+      <h2>page 10</h2>  
+    </article>
+    <article>
+      <h2>page 11</h2>  
+    </article>
+    <article>
+      <h2>page 12</h2>  
+    </article>
+  </section>
+  </main>
+  
+</body>
+</html>

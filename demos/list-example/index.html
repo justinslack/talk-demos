@@ -37,11 +37,6 @@
               Overview / Goals
             </a>
           </li>
-          <!-- <li>
-            <a href="#section-6" class="content-link">
-              Overview / Goals
-            </a>
-          </li> -->
         </ul>
       </nav>
     </div>
@@ -76,27 +71,21 @@
         <p>Tellus integer feugiat scelerisque varius. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vulputate eu scelerisque felis imperdiet. In hendrerit gravida rutrum quisque. Aliquet bibendum enim facilisis gravida. Et malesuada fames ac turpis. Dignissim cras tincidunt lobortis feugiat vivamus at augue eget. Euismod quis viverra nibh cras pulvinar mattis. Commodo elit at imperdiet dui accumsan. Ipsum nunc aliquet bibendum enim. Non odio euismod lacinia at quis risus sed.</p>
         <p>Tincidunt arcu non sodales neque sodales ut etiam sit. Semper feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Nec sagittis aliquam malesuada bibendum arcu vitae elementum. Diam vulputate ut pharetra sit amet aliquam id diam maecenas. Eu nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Pharetra pharetra massa massa ultricies mi. Odio aenean sed adipiscing diam. Tellus in hac habitasse platea dictumst vestibulum rhoncus. Vestibulum mattis ullamcorper velit sed. Nulla facilisi etiam dignissim diam quis enim lobortis. Viverra justo nec ultrices dui sapien eget mi proin sed. Lobortis scelerisque fermentum dui faucibus in. Orci nulla pellentesque dignissim enim sit amet. Feugiat pretium nibh ipsum consequat. Lorem donec massa sapien faucibus.</p>
       </div>
-      <!-- <div class="content-section" id="section-6">
-        <h1 class="content-sub-head no-count">Overview / Goals</h1>
-        <h2>Sub header</h2>
-        <p>Tellus integer feugiat scelerisque varius. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Vulputate eu scelerisque felis imperdiet. In hendrerit gravida rutrum quisque. Aliquet bibendum enim facilisis gravida. Et malesuada fames ac turpis. Dignissim cras tincidunt lobortis feugiat vivamus at augue eget. Euismod quis viverra nibh cras pulvinar mattis. Commodo elit at imperdiet dui accumsan. Ipsum nunc aliquet bibendum enim. Non odio euismod lacinia at quis risus sed.</p>
-        <p>Tincidunt arcu non sodales neque sodales ut etiam sit. Semper feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Nec sagittis aliquam malesuada bibendum arcu vitae elementum. Diam vulputate ut pharetra sit amet aliquam id diam maecenas. Eu nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Pharetra pharetra massa massa ultricies mi. Odio aenean sed adipiscing diam. Tellus in hac habitasse platea dictumst vestibulum rhoncus. Vestibulum mattis ullamcorper velit sed. Nulla facilisi etiam dignissim diam quis enim lobortis. Viverra justo nec ultrices dui sapien eget mi proin sed. Lobortis scelerisque fermentum dui faucibus in. Orci nulla pellentesque dignissim enim sit amet. Feugiat pretium nibh ipsum consequat. Lorem donec massa sapien faucibus.</p>
-      </div> -->
     </div>
   </div>
-</body>
-<script>
-  let contentScroll = Array.from(document.querySelectorAll('.content-link'));
-
-  const handleClick = (e) => {
+  <script>
+    let contentScroll = Array.from(document.querySelectorAll('.content-link'));
+  
+    const handleClick = (e) => {
+      contentScroll.forEach(node => {
+        node.classList.remove('active');
+      });
+      e.currentTarget.classList.add('active');
+    }
+  
     contentScroll.forEach(node => {
-      node.classList.remove('active');
+      node.addEventListener('click', handleClick)
     });
-    e.currentTarget.classList.add('active');
-  }
-
-  contentScroll.forEach(node => {
-    node.addEventListener('click', handleClick)
-  });
-</script>
+  </script>
+</body>
 </html>
